@@ -1,74 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Privacy Policy — VPN Browser Extension</title>
+  <title>Privacy Policy / Политика конфиденциальности — VPN Browser Extension</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1a6fa0;
+      --dark: #1a1a2e;
+      --muted: #888;
+      --border: #e5e5e0;
+      --bg: #f9f9f7;
+      --bg-card: #ffffff;
+      --no-collect-bg: #fff5f5;
+      --no-collect-border: #e24b4a;
+      --badge-free-bg: #e1f5ee;
+      --badge-free-color: #0f6e56;
+      --badge-premium-bg: #e6f1fb;
+      --badge-premium-color: #185fa5;
+    }
+
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #f9f9f7;
-      color: #1a1a2e;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--dark);
       line-height: 1.7;
       font-size: 16px;
     }
 
-    .container {
-      max-width: 740px;
-      margin: 0 auto;
-      padding: 48px 24px 80px;
+    /* ── Lang switcher bar ── */
+    .lang-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      padding: 0;
     }
 
-    header {
-      border-bottom: 1px solid #e5e5e0;
-      padding-bottom: 32px;
-      margin-bottom: 40px;
+    .lang-btn {
+      flex: 1;
+      max-width: 260px;
+      padding: 14px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .lang-btn.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: var(--dark);
+    }
+
+    .divider-v {
+      width: 1px;
+      height: 24px;
+      background: var(--border);
+    }
+
+    /* ── Columns layout ── */
+    .columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 100vh;
+    }
+
+    .col {
+      padding: 48px 40px 80px;
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .col-ru { border-right: 1px solid var(--border); }
+
+    /* ── Mobile: show one column at a time ── */
+    @media (max-width: 860px) {
+      .columns { grid-template-columns: 1fr; }
+      .col-ru { border-right: none; border-bottom: 1px solid var(--border); }
+      .col { padding: 32px 20px 60px; }
+
+      .col-ru  { display: none; }
+      .col-en  { display: none; }
+      .col-ru.visible  { display: block; }
+      .col-en.visible  { display: block; }
+    }
+
+    @media (min-width: 861px) {
+      .lang-bar { display: none; }
+      .col-ru, .col-en { display: block !important; }
+    }
+
+    /* ── Typography ── */
+    header { margin-bottom: 40px; padding-bottom: 28px; border-bottom: 1px solid var(--border); }
+
+    header .product {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
     }
 
     header h1 {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 600;
-      color: #1a6fa0;
+      color: var(--dark);
       margin-bottom: 6px;
+      line-height: 1.3;
     }
 
-    header p {
-      font-size: 14px;
-      color: #888;
-    }
-
-    h2 {
-      font-size: 18px;
-      font-weight: 600;
-      color: #1a1a2e;
-      margin: 40px 0 10px;
-    }
-
-    h3 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #1a1a2e;
-      margin: 24px 0 8px;
-    }
-
-    p { margin-bottom: 12px; }
-
-    ul {
-      padding-left: 20px;
-      margin-bottom: 12px;
-    }
-
-    ul li {
-      margin-bottom: 6px;
-      color: #333;
+    header .meta {
+      font-size: 13px;
+      color: var(--muted);
     }
 
     .section {
-      border-bottom: 1px solid #e5e5e0;
-      padding-bottom: 32px;
-      margin-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+      padding: 28px 0;
+    }
+
+    .section:last-child { border-bottom: none; }
+
+    h2 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      margin: 20px 0 6px;
+    }
+
+    p { font-size: 14px; color: #444; margin-bottom: 10px; line-height: 1.7; }
+
+    ul {
+      padding-left: 18px;
+      margin-bottom: 10px;
+    }
+
+    ul li {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 5px;
+      line-height: 1.6;
     }
 
     .badge {
@@ -81,109 +179,226 @@
       vertical-align: middle;
     }
 
-    .free  { background: #e1f5ee; color: #0f6e56; }
-    .premium { background: #e6f1fb; color: #185fa5; }
+    .free    { background: var(--badge-free-bg);    color: var(--badge-free-color); }
+    .premium { background: var(--badge-premium-bg); color: var(--badge-premium-color); }
 
     .no-collect {
-      background: #fff5f5;
-      border-left: 3px solid #e24b4a;
-      padding: 12px 16px;
+      background: var(--no-collect-bg);
+      border-left: 3px solid var(--no-collect-border);
       border-radius: 0 8px 8px 0;
-      margin: 12px 0;
+      padding: 10px 14px;
+      margin: 10px 0;
     }
 
     .no-collect ul { margin: 0; }
 
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
     footer {
-      margin-top: 48px;
-      font-size: 13px;
-      color: #aaa;
       text-align: center;
+      font-size: 12px;
+      color: #bbb;
+      padding: 32px 0 0;
     }
   </style>
 </head>
 <body>
-<div class="container">
 
-  <header>
-    <h1>Privacy Policy</h1>
-    <p>VPN Browser Extension &nbsp;·&nbsp; Last updated: [insert date]</p>
-  </header>
-
-  <div class="section">
-    <h2>1. Introduction</h2>
-    <p>This Privacy Policy explains what data VPN Browser Extension collects, how it is used, and how it is protected. By using the Extension, you agree to the terms of this Policy.</p>
-    <p>We follow a data minimization principle — we collect only what is strictly necessary for the Extension to function.</p>
+  <!-- Mobile lang switcher -->
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="switchLang('ru')">🇷🇺 Русский</button>
+    <div class="divider-v"></div>
+    <button class="lang-btn" onclick="switchLang('en')">🇬🇧 English</button>
   </div>
 
-  <div class="section">
-    <h2>2. Data We Collect</h2>
+  <div class="columns">
 
-    <h3>2.1 Anonymous Device ID <span class="badge free">Free</span></h3>
-    <p>A random UUID generated on first install. It contains no personal information, is stored locally in your browser, and resets if you reinstall the Extension.</p>
+    <!-- ══════════════ RUSSIAN ══════════════ -->
+    <div class="col col-ru visible">
+      <header>
+        <div class="product">VPN Browser Extension</div>
+        <h1>Политика конфиденциальности</h1>
+        <div class="meta">Дата последнего обновления: [укажите дату]</div>
+      </header>
 
-    <h3>2.2 Email Address <span class="badge premium">Premium</span></h3>
-    <p>Collected only when you voluntarily register. Used for account identification, subscription management, and account recovery. Registration is optional — the Free version requires no email.</p>
+      <div class="section">
+        <h2>1. Общие положения</h2>
+        <p>Настоящая Политика описывает, какие данные собирает VPN Browser Extension, как они используются и защищаются. Используя Расширение, вы соглашаетесь с условиями данной Политики.</p>
+        <p>Мы придерживаемся принципа минимального сбора данных — только то, что строго необходимо для работы сервиса.</p>
+      </div>
 
-    <h3>2.3 Bandwidth Usage Statistics</h3>
-    <p>Volume of traffic per session, session timestamps, and limit status. Linked to Device ID (Free) or your account (Premium).</p>
+      <div class="section">
+        <h2>2. Какие данные мы собираем</h2>
 
-    <h3>2.4 What We Never Collect</h3>
-    <div class="no-collect">
-      <ul>
-        <li>Browsing history or DNS queries</li>
-        <li>Content of your internet traffic</li>
-        <li>Your real IP address in persistent logs</li>
-        <li>Location data</li>
-        <li>Payment details</li>
-      </ul>
+        <h3>2.1 Анонимный Device ID <span class="badge free">Бесплатно</span></h3>
+        <p>При первой установке генерируется случайный UUID. Он не содержит персональных данных, хранится локально в браузере и сбрасывается при переустановке.</p>
+
+        <h3>2.2 Email-адрес <span class="badge premium">Premium</span></h3>
+        <p>Собирается только при добровольной регистрации. Используется для идентификации аккаунта, управления подпиской и восстановления доступа. Регистрация необязательна.</p>
+
+        <h3>2.3 Статистика трафика</h3>
+        <p>Объём трафика, временны́е метки сессий и статус лимита. В бесплатной версии привязана к Device ID, в Premium — к аккаунту.</p>
+
+        <h3>2.4 Что мы никогда не собираем</h3>
+        <div class="no-collect">
+          <ul>
+            <li>История посещённых сайтов и DNS-запросы</li>
+            <li>Содержимое интернет-трафика</li>
+            <li>Реальный IP-адрес в постоянных логах</li>
+            <li>Данные геолокации</li>
+            <li>Платёжные данные</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>3. Как мы используем данные</h2>
+        <ul>
+          <li>Учёт трафика и управление подписками</li>
+          <li>Стабильная работа VPN-сервиса</li>
+          <li>Транзакционные письма (подтверждение, уведомления)</li>
+          <li>Анонимная агрегированная статистика для улучшения сервиса</li>
+        </ul>
+        <p>Мы не используем данные в рекламных целях и не передаём их рекламным сетям.</p>
+      </div>
+
+      <div class="section">
+        <h2>4. Передача данных третьим лицам</h2>
+        <ul>
+          <li><strong>Платёжные провайдеры</strong> — только для обработки платежей</li>
+          <li><strong>Государственные органы</strong> — только по требованию закона</li>
+        </ul>
+        <p>Мы никогда не продаём ваши данные.</p>
+      </div>
+
+      <div class="section">
+        <h2>5. Сроки хранения</h2>
+        <ul>
+          <li>Статистика (Free): удаляется через 90 дней с момента последней активности</li>
+          <li>Данные аккаунта (Premium): хранятся в течение срока действия аккаунта и 30 дней после удаления</li>
+          <li>Device ID: хранится локально, удаляется вместе с Расширением</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>6. Ваши права</h2>
+        <p><strong>Бесплатная версия:</strong> переустановите Расширение — Device ID сбросится и все связанные данные будут удалены.</p>
+        <p><strong>Premium:</strong> вы можете запросить доступ, исправление или полное удаление данных аккаунта в любой момент.</p>
+      </div>
+
+      <div class="section">
+        <h2>7. Контактная информация</h2>
+        <p>Вопросы и запросы на удаление данных: <a href="mailto:[ваш@email.com]">[ваш@email.com]</a></p>
+        <p>Срок ответа — не более 30 дней.</p>
+      </div>
+
+      <footer>© [Год] [Название продукта] · Все права защищены</footer>
     </div>
+
+    <!-- ══════════════ ENGLISH ══════════════ -->
+    <div class="col col-en">
+      <header>
+        <div class="product">VPN Browser Extension</div>
+        <h1>Privacy Policy</h1>
+        <div class="meta">Last updated: [insert date]</div>
+      </header>
+
+      <div class="section">
+        <h2>1. Introduction</h2>
+        <p>This Privacy Policy explains what data VPN Browser Extension collects, how it is used, and how it is protected. By using the Extension, you agree to the terms of this Policy.</p>
+        <p>We follow a data minimization principle — we collect only what is strictly necessary for the Extension to function.</p>
+      </div>
+
+      <div class="section">
+        <h2>2. Data We Collect</h2>
+
+        <h3>2.1 Anonymous Device ID <span class="badge free">Free</span></h3>
+        <p>A random UUID generated on first install. It contains no personal information, is stored locally in your browser, and resets if you reinstall the Extension.</p>
+
+        <h3>2.2 Email Address <span class="badge premium">Premium</span></h3>
+        <p>Collected only when you voluntarily register. Used for account identification, subscription management, and account recovery. Registration is optional.</p>
+
+        <h3>2.3 Bandwidth Usage Statistics</h3>
+        <p>Volume of traffic per session, session timestamps, and limit status. Linked to Device ID (Free) or your account (Premium).</p>
+
+        <h3>2.4 What We Never Collect</h3>
+        <div class="no-collect">
+          <ul>
+            <li>Browsing history or DNS queries</li>
+            <li>Content of your internet traffic</li>
+            <li>Your real IP address in persistent logs</li>
+            <li>Location data</li>
+            <li>Payment details</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>3. How We Use Your Data</h2>
+        <ul>
+          <li>Enforce traffic limits and manage subscriptions</li>
+          <li>Keep the VPN service running reliably</li>
+          <li>Send transactional emails (confirmation, expiry notices)</li>
+          <li>Generate anonymous aggregated statistics to improve the service</li>
+        </ul>
+        <p>We do not use your data for advertising and do not share it with ad networks.</p>
+      </div>
+
+      <div class="section">
+        <h2>4. Third Parties</h2>
+        <ul>
+          <li><strong>Payment processors</strong> — billing only, no traffic data shared</li>
+          <li><strong>Law enforcement</strong> — only when legally required</li>
+        </ul>
+        <p>We never sell your data.</p>
+      </div>
+
+      <div class="section">
+        <h2>5. Data Retention</h2>
+        <ul>
+          <li>Traffic statistics (Free): deleted after 90 days of inactivity</li>
+          <li>Account data (Premium): retained while active, deleted within 30 days of account deletion</li>
+          <li>Device ID: stored locally, deleted when Extension is removed</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>6. Your Rights</h2>
+        <p><strong>Free users:</strong> reinstall the Extension to reset your Device ID and erase all associated data.</p>
+        <p><strong>Premium users:</strong> you may request access, correction, or deletion of your account data at any time.</p>
+      </div>
+
+      <div class="section">
+        <h2>7. Contact</h2>
+        <p>Questions or data requests: <a href="mailto:[your@email.com]">[your@email.com]</a></p>
+        <p>We respond within 30 days.</p>
+      </div>
+
+      <footer>© [Year] [Product Name] · All rights reserved</footer>
+    </div>
+
   </div>
 
-  <div class="section">
-    <h2>3. How We Use Your Data</h2>
-    <ul>
-      <li>Enforce traffic limits and manage subscriptions</li>
-      <li>Keep the VPN service running reliably</li>
-      <li>Send transactional emails (confirmation, expiry notices)</li>
-      <li>Generate anonymous aggregated statistics to improve the service</li>
-    </ul>
-    <p>We do not use your data for advertising and do not share it with ad networks.</p>
-  </div>
+  <script>
+    function switchLang(lang) {
+      const ru = document.querySelector('.col-ru');
+      const en = document.querySelector('.col-en');
+      const btns = document.querySelectorAll('.lang-btn');
 
-  <div class="section">
-    <h2>4. Third Parties</h2>
-    <ul>
-      <li><strong>Payment processors</strong> — billing only, no traffic data shared</li>
-      <li><strong>Law enforcement</strong> — only when legally required</li>
-    </ul>
-    <p>We never sell your data.</p>
-  </div>
+      if (lang === 'ru') {
+        ru.classList.add('visible');
+        en.classList.remove('visible');
+        btns[0].classList.add('active');
+        btns[1].classList.remove('active');
+      } else {
+        en.classList.add('visible');
+        ru.classList.remove('visible');
+        btns[1].classList.add('active');
+        btns[0].classList.remove('active');
+      }
+    }
+  </script>
 
-  <div class="section">
-    <h2>5. Data Retention</h2>
-    <ul>
-      <li>Traffic statistics (Free): deleted after 90 days of inactivity</li>
-      <li>Account data (Premium): retained while account is active, deleted within 30 days of account deletion</li>
-      <li>Device ID: stored locally, deleted when Extension is removed</li>
-    </ul>
-  </div>
-
-  <div class="section">
-    <h2>6. Your Rights</h2>
-    <p><strong>Free users:</strong> reinstall the Extension to reset your Device ID and erase all associated data.</p>
-    <p><strong>Premium users:</strong> you may request access, correction, or deletion of your account data at any time by contacting us.</p>
-  </div>
-
-  <div class="section">
-    <h2>7. Contact</h2>
-    <p>Questions or data requests: <a href="mailto:[your@email.com]">[your@email.com]</a></p>
-    <p>We respond within 30 days.</p>
-  </div>
-
-  <footer>© [Year] [Product Name] · All rights reserved</footer>
-
-</div>
 </body>
 </html>
-```
